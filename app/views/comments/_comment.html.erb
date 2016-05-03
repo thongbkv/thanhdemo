@@ -1,0 +1,17 @@
+<li id="comment-<%= comment.id %>">
+	<span class='user'><%= link_to comment.user.name, comment.user %></span>
+	<span class='content'>
+		<%= comment.content %>
+	</span>
+	<span class='timestamp'>
+		<%= time_ago_in_words comment.created_at %>
+	</span>
+	<span>
+		<% if !current_user.nil? %>
+		<% 	@comment = comment %>
+			<% if current_user?(comment.user) %>
+				<%= link_to 'Delete', comment, method: :delete, data: {confirm: 'Are you sure?'} %>
+			<% end %>
+			<% end %>
+	</span>
+</li>

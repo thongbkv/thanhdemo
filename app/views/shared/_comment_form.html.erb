@@ -1,0 +1,11 @@
+<% if  logged_in? && (@user.following?(@entry.user) || @user.id == @entry.user.id ) %>
+<%= form_for @comment do |f|%>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :user_id, value: @user.id %>
+	<%= f.hidden_field :entry_id, value: @entry.id %>
+	<div class="field">
+		<%= f.text_area :content, placeholder: "New comment...", value: '' %>
+	</div>
+	<%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+<% end %>
